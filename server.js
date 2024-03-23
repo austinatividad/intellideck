@@ -21,7 +21,10 @@ app.listen(PORT, () => {
 // Routes:
 
 app.get("/api/get_decks", async (req, res) => {
-  const decks = await Deck.find({}).populate("cards").exec();
+  const decks = await Deck.find({})
+    .sort({ created_at: -1 })
+    .populate("cards")
+    .exec();
   res.json(decks);
 });
 
@@ -47,6 +50,7 @@ app.get("/api/add_deck/", async (req, res) => {
     name: req.query.name,
     description: req.query.description,
     tags: req.query.tags,
+    ai_prompt: req.query.ai_prompt,
   });
   await deck.save();
   res.json(deck);

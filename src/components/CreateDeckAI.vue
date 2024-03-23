@@ -40,7 +40,15 @@
       ><br />
       <div class="button_holder">
         <button class="cancel" @click="cancelDeck()">Cancel</button>
-        <button class="ai_button" @click="constructDeck()">Create Deck</button>
+        <button
+          class="ai_button"
+          @click="
+            constructDeck();
+            generateCards();
+          "
+        >
+          Create Deck
+        </button>
       </div>
     </div>
   </div>
@@ -168,9 +176,9 @@ export default {
       // Call axios to send request to the backend
       // to generate the cards
       axios
-        .get("http://localhost:9090/generate_cards", {
+        .get("http://localhost:9090/api/generate_cards", {
           params: {
-            text: this.text_input,
+            text: this.deck.text,
           },
         })
         .then((response) => {
@@ -178,27 +186,36 @@ export default {
           this.cards = response.data;
           //  TODO: only uncomment each axios call if the previous one is successful
           //  card generation successful, now add the deck to the database
-          //   axios
-          //     .post("http://localhost:9090/add_deck", {
-          //       name: this.deck.title,
-          //       description: this.deck.description,
-          //       tags: this.deck.tags,
-          //     })
-          //     .then((response) => {
-          //       console.log(response.data);
-          //       const db_deck = response.data;
-          //       for (let i = 0; i < this.cards.length; i++) {
-          //         axios
-          //           .post("http://localhost:9090/add_card", {
-          //             deck_id: db_deck._id,
-          //             question: this.cards[i].question,
-          //             answer: this.cards[i].answer,
-          //           })
-          //           .then((response) => {
-          //             console.log(response.data);
-          //           });
-          //       }
-          //     });
+          axios
+            .get("http://localhost:9090/api/add_deck", {
+              params: {
+                name: this.deck.title,
+                description: this.deck.description,
+                tags: this.deck.tags,
+                ai_prompt: this.deck.text,
+              },
+            })
+            .then((response) => {
+              console.log(response.data);
+              const db_deck = response.data;
+              console.log(db_deck);
+              //redirect to home
+              this.$router.push({
+                name: "home",
+                params: { message: "Deck created successfully!" },
+              });
+              //       for (let i = 0; i < this.cards.length; i++) {
+              //         axios
+              //           .get("http://localhost:9090/add_card", {
+              //             deck_id: db_deck._id,
+              //             question: this.cards[i].question,
+              //             answer: this.cards[i].answer,
+              //           })
+              //           .then((response) => {
+              //             console.log(response.data);
+              //           });
+              //       }
+            });
         });
     },
     simplifyTags() {

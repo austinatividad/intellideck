@@ -121,13 +121,20 @@ button {
 .deck_tags {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  align-content: left;
+  min-width: 50%;
   margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 .tag {
-  padding: 0rem 0.1 rem;
+  padding: 0rem 0.5rem;
   margin-right: 0.3rem;
+  break-after: avoid;
   border-radius: 5px;
   background-color: #ccc;
+  min-width: 5%;
+  margin-bottom: 0.2rem;
 }
 
 .tag_text {

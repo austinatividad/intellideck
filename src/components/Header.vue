@@ -8,8 +8,8 @@
         >
       </h1>
       <p class="main-page_description">
-        a platform that integrates <span class="green">AI</span> to help you
-        memorize concepts and terminologies through
+        a platform that integrates <span class="green">Generative AI</span> to
+        assist you in memorizing concepts and terminologies through
         <span class="green">flashcards</span>
       </p>
       <!--insert deck list here-->

@@ -32,5 +32,11 @@ import Header from "@/components/Header.vue";
 export default {
   name: "MainPage",
   components: { DeckList, Header },
+  props: {
+    message: String,
+  },
+  mounted() {
+    console.log(this.message);
+  },
 };
 </script>

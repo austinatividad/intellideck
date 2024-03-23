@@ -1,5 +1,8 @@
 <template>
   <div class="deck-list">
+    <div class="message" v-if="message">
+      <p>{{ message }}</p>
+    </div>
     <div class="new_deck" @click="createDeck()">
       <div class="new_deck_header">
         <h2>New <span class="deck_span">Deck</span></h2>
@@ -23,7 +26,7 @@
 .deck {
   display: flex;
   flex-direction: row;
-  width: 80%;
+  width: 40%;
   margin: 1rem 0;
   padding: 1rem;
   border: 1px solid #ccc;
@@ -37,7 +40,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 80%;
+  width: 40%;
   margin: 1rem 0;
   padding: 1rem;
   border: 1px solid #ccc;
@@ -98,22 +101,6 @@ button {
   cursor: pointer;
 }
 
-.deck_tags {
-  display: flex;
-  flex-direction: row;
-  margin-top: 0.5rem;
-}
-.tag {
-  padding: 0rem 0.1 rem;
-  margin-right: 0.3rem;
-  border-radius: 5px;
-  background-color: #ccc;
-}
-
-.tag_text {
-  color: white;
-  padding: 0rem 0.3rem;
-}
 .green {
   background-color: #19c883;
 }
