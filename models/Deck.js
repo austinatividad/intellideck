@@ -7,7 +7,8 @@ var DeckSchema = new mongoose.Schema({
     tags: [String],
     created_at: { type: Date, default: Date.now },
     is_deleted: { type: Boolean, default: false },
-    ai_prompt: { type: String, required: false}
+    ai_prompt: { type: String, required: false},
+    practice_highscore: { type: Number, default: 0},
 })
 
 module.exports = mongoose.model('Deck', DeckSchema);

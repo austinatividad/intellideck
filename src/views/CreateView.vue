@@ -3,14 +3,16 @@
   <div class="create_page">
     <div class="creation_type_buttons">
       <button class="ai_button" @click="setCreationType('ai')">
-        <h1><span class="green"> Intelligent</span> Flashcards</h1>
-        <p>
-          Let AI create flashcards from your text, notes, or website contents.
-        </p>
+        <h1>
+          <span class="green"> Intelligent</span> Flashcards
+          <span class="ai_generated_symbol">✦</span>
+        </h1>
+
+        <p>Let AI create flashcards from your input.</p>
       </button>
       <button class="manual_button" @click="setCreationType('manual')">
         <h1><span class="red">Manual</span> Flashcards</h1>
-        <p>Create flashcards manually by entering the terms and definitions.</p>
+        <p>Create flashcards manually.</p>
       </button>
     </div>
 
@@ -25,6 +27,10 @@
 </template>
 
 <style scoped>
+.ai_generated_symbol {
+  color: #19c883 !important;
+}
+
 .create_page {
   display: flex;
   flex-direction: column;
@@ -37,7 +43,7 @@
 .creation_type_buttons {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   margin: 1rem 0;
 }
 
@@ -45,6 +51,7 @@ button {
   padding: 1rem;
   border: 1px solid #ccc;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  min-width: 50%;
   background-color: #fff;
   border-radius: 5px;
   cursor: pointer;

@@ -1,7 +1,10 @@
 <template>
   <div class="ai_form">
     <div class="ai_form_header">
-      <h1><span class="green">Intelligent</span> Flashcards</h1>
+      <h1>
+        <span class="green">Intelligent</span> Flashcards
+        <span style="color: #19c883">✦</span>
+      </h1>
       <p>
         Let AI create the flashcards for you, based on your provided input.<br />
         You can provide your own notes, or paste content from the internet.<br /><br />
