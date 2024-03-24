@@ -3,8 +3,8 @@
     <div class="ai_form_header">
       <h1><span class="green">Intelligent</span> Flashcards</h1>
       <p>
-        Let AI create the flashcards for you, based on your provided text.<br />
-        You can use your notes, website contents, or other forms of text.
+        Let AI create the flashcards for you, based on your provided input.<br />
+        You can provide your own notes, or paste content from the internet.<br /><br />
       </p>
     </div>
     <div class="ai_form_input">
@@ -23,7 +23,10 @@
         cols="50"
         required
       ></textarea>
-      <h3><span class="green">Step 3:</span> Tags</h3>
+      <h3>
+        <span class="green">Step 3:</span> Tags
+        <span class="green" style="font-size: smaller">(Experimental!)</span>
+      </h3>
       <vue-tags-input
         v-model="tag"
         :tags="tags"
@@ -38,6 +41,12 @@
         required
       ></textarea
       ><br />
+      <p>
+        <span class="green" style="margin-bottom: 1rem">*note: </span>
+        IntelliDeck may generate inaccurate results. Please verify the generated
+        flashcards before using them.
+      </p>
+
       <div class="button_holder">
         <button class="cancel" @click="cancelDeck()">Cancel</button>
         <button
@@ -173,6 +182,11 @@ export default {
       console.log(this.deck);
     },
     generateCards() {
+      //check if title and text is empty
+      if (this.deck_title === "" || this.text_input === "") {
+        alert("Please fill out the title and text input fields.");
+        return;
+      }
       // Call axios to send request to the backend
       // to generate the cards
       axios
@@ -184,6 +198,10 @@ export default {
         .then((response) => {
           console.log(response.data);
           this.cards = response.data;
+          if (this.cards.length < 2) {
+            alert("No cards were generated. Please try again.");
+            return;
+          }
           //  TODO: only uncomment each axios call if the previous one is successful
           //  card generation successful, now add the deck to the database
           axios
@@ -197,24 +215,31 @@ export default {
             })
             .then((response) => {
               console.log(response.data);
-              const db_deck = response.data;
-              console.log(db_deck);
+              const deck_id = response.data;
+
+              //add the cards to the deck
+              console.log(this.cards);
+              for (let i = 0; i < this.cards.length; i++) {
+                axios
+                  .get("http://localhost:9090/api/add_card", {
+                    params: {
+                      _id: deck_id,
+                      definition: this.cards[i].definition,
+                      term: this.cards[i].term,
+                    },
+                  })
+                  .then((response) => {
+                    console.log(response);
+                    if (response.message == "Error finding deck") {
+                      alert("Error finding deck");
+                      return;
+                    }
+                  });
+              }
               //redirect to home
               this.$router.push({
                 name: "home",
-                params: { message: "Deck created successfully!" },
               });
-              //       for (let i = 0; i < this.cards.length; i++) {
-              //         axios
-              //           .get("http://localhost:9090/add_card", {
-              //             deck_id: db_deck._id,
-              //             question: this.cards[i].question,
-              //             answer: this.cards[i].answer,
-              //           })
-              //           .then((response) => {
-              //             console.log(response.data);
-              //           });
-              //       }
             });
         });
     },

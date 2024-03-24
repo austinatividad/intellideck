@@ -6,7 +6,10 @@
     <div class="deck_content">
       <div class="deck_information">
         <div class="deck_title">
-          <h2>{{ deck.name }}</h2>
+          <h2>
+            {{ deck.name }}
+            <span v-if="deck.ai_prompt" class="ai_generated_symbol">✦</span>
+          </h2>
         </div>
         <div class="deck_description">
           <p>
@@ -168,6 +171,10 @@ hover transformations
 .new_deck:hover {
   transform: scale(1.02);
   transition: transform 0.2s;
+}
+
+.ai_generated_symbol {
+  color: #19c883 !important;
 }
 </style>
 

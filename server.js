@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const Deck = require("./models/Deck");
 const Card = require("./models/Card");
-const LLMController = require("./controllers/LLMController");
+const fetch = require("node-fetch");
 const app = express();
 
 //db setup
@@ -28,21 +28,24 @@ app.get("/api/get_decks", async (req, res) => {
   res.json(decks);
 });
 
-app.get("/api/get_collection/:_id", async (req, res) => {
-  const deck = await Deck.findById(req.params._id).populate("cards").exec();
+app.get("/api/get_deck", async (req, res) => {
+  const deck = await Deck.findById(req.query.deck_id).populate("cards").exec();
   res.json(deck);
 });
 
 app.get("/api/add_card/", async (req, res) => {
-  const deck = await Deck.findById(req.params.deck_id);
+  console.log("DECK ID: " + req.query._id);
+
+  const deck = await Deck.findById(req.query._id);
   const card = new Card({
-    question: req.params.question,
-    answer: req.params.answer,
+    definition: req.query.definition,
+    term: req.query.term,
   });
   await card.save();
   deck.cards.push(card);
   await deck.save();
-  res.json(deck);
+  console.log("Card added to deck");
+  res.json({ message: "Card added to deck" });
 });
 
 app.get("/api/add_deck/", async (req, res) => {
@@ -53,7 +56,42 @@ app.get("/api/add_deck/", async (req, res) => {
     ai_prompt: req.query.ai_prompt,
   });
   await deck.save();
-  res.json(deck);
+  console.log(deck._id);
+  console.log("Deck created successfully");
+  res.json(deck._id);
 });
 
-app.get("/api/generate_cards", LLMController.llm_get_decks);
+//helper function for generating flashcards
+
+app.get("/api/generate_cards", async (req, res) => {
+  const text_input = req.query.text;
+  console.log(text_input);
+
+  const request = {
+    messages: ` You are a flashcard generator. Do not explain. Do not include the term in the definition. Add 5 newlines at the end of your response. Your task is to create a LIST containing 10 JSON objects that follow the following format: { "definition": "insert definition here", "term": "insert term here" } You are tasked to create flashcards based on User: ${text_input} `,
+  };
+
+  const url = "http://localhost:8766/v1/chat/completions";
+
+  const result = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(request),
+  });
+  const data = await result.json();
+
+  const flashcards = data.choices[0].message.content;
+
+  try {
+    //parse the list of json objects
+    const final = JSON.parse(flashcards);
+    res.json(final);
+  } catch (e) {
+    console.log("Error parsing JSON");
+    res.json({ error: "Error parsing JSON" });
+  }
+
+  console.log(flashcards);
+});

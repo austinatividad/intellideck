@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 var DeckSchema = new mongoose.Schema({
-    name: String,
-    description: String,
+    name: {type: String, default: 'Untitled Deck'},
+    description: {type: String, default: 'No description provided'},
     cards: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Card', default : []}],
     tags: [String],
     created_at: { type: Date, default: Date.now },

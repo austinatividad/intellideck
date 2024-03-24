@@ -3,7 +3,7 @@
     <div class="main-page_header">
       <h1>
         Intelli<span
-          style="color: #19c883; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3)"
+          style="color: #19c883; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3)"
           >Deck</span
         >
       </h1>
@@ -34,6 +34,7 @@
   width: 100%;
   height: 20rem;
   background-color: #f5f5f5;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4);
 }
 h1 {
   font-size: 10vh;
