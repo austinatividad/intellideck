@@ -37,41 +37,8 @@
         <h1 class="my_cards">Flashcards</h1>
       </div>
       <div class="cards_section">
-        <div class="card">
-          <div class="card_definition">
-            Who was the first president of the United States?
-          </div>
-          <div class="card_term">Joe Biden's Nuts</div>
-        </div>
-        <div class="card">
-          <div class="card_definition">
-            Who was the first president of the United States?
-          </div>
-          <div class="card_term">Joe Biden</div>
-        </div>
-        <div class="card">
-          <div class="card_definition">
-            Who was the first president of the United States?
-          </div>
-          <div class="card_term">Joe Biden</div>
-        </div>
-        <div class="card">
-          <div class="card_definition">
-            Who was the first president of the United States?
-          </div>
-          <div class="card_term">Joe Biden</div>
-        </div>
-        <div class="card">
-          <div class="card_definition">
-            Who was the first president of the United States?
-          </div>
-          <div class="card_term">Joe Biden</div>
-        </div>
-        <div class="card">
-          <div class="card_definition">
-            Who was the first president of the United States?
-          </div>
-          <div class="card_term">Joe Biden</div>
+        <div v-for="(card, index) in deck.cards" :key="index" class="card">
+          <Card :card="card" />
         </div>
       </div>
     </div>
@@ -269,6 +236,7 @@ hover transformations
 <script>
 import axios from "axios";
 import Header from "@/components/Header.vue";
+import Card from "@/components/Card.vue";
 export default {
   name: "DeckView",
   data() {
@@ -278,6 +246,7 @@ export default {
   },
   components: {
     Header,
+    Card,
   },
   mounted() {
     console.log("DeckView mounted");

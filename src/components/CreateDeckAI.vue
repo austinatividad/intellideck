@@ -75,6 +75,10 @@
   align-items: center;
   width: 100%;
   margin-top: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  background-color: #fefefe;
 }
 
 .ai_form_header {
@@ -89,7 +93,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 80%;
   margin: 1rem 0;
 }
 
@@ -132,7 +136,7 @@ textarea {
 
 .vue-tags-input {
   width: 100%;
-  max-width: 100%;
+  max-width: 98%;
   border-radius: 5px;
   font-family: "Avenir", sans-serif;
 }

@@ -38,7 +38,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 60%;
   margin: 1rem 0;
 }
 
