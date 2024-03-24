@@ -5,7 +5,7 @@
     </div>
     <div class="new_deck" @click="createDeck()">
       <div class="new_deck_header">
-        <h2>New <span class="deck_span">Deck</span></h2>
+        <h2>Create a New <span class="deck_span">Deck</span></h2>
       </div>
       <div class="deck_actions">
         <img src="../assets/arrow.png" class="open_deck" alt="arrow" />

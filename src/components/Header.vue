@@ -8,8 +8,9 @@
         >
       </h1>
       <p class="main-page_description">
-        a platform that integrates <span class="green">Generative AI</span> to
-        assist you in memorizing concepts and terminologies through
+        a platform that integrates
+        <span class="green">Large Langauge Models</span> to assist you in
+        memorizing concepts and terminologies through
         <span class="green">flashcards</span>
       </p>
       <!--insert deck list here-->
@@ -35,14 +36,17 @@
   background-color: #f5f5f5;
 }
 h1 {
-  font-size: 3rem;
+  font-size: 10vh;
   color: #2c3e50;
+  margin-bottom: 0vh;
 }
 .main-page_description {
   font-size: 1.5rem;
   color: #2c3e50;
   text-align: center;
-  margin-top: 1rem;
+  margin-top: 0vh;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 .green {
   color: #19c883;

@@ -3,10 +3,14 @@
   <div class="create_page">
     <div class="creation_type_buttons">
       <button class="ai_button" @click="setCreationType('ai')">
-        <h1>Intelligent Cards</h1>
+        <h1><span class="green"> Intelligent</span> Flashcards</h1>
+        <p>
+          Let AI create flashcards from your text, notes, or website contents.
+        </p>
       </button>
       <button class="manual_button" @click="setCreationType('manual')">
-        <h1>Manual Cards</h1>
+        <h1><span class="red">Manual</span> Flashcards</h1>
+        <p>Create flashcards manually by entering the terms and definitions.</p>
       </button>
     </div>
 
@@ -42,11 +46,42 @@ button {
   padding: 1rem;
   border: 1px solid #ccc;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  background-color: #19c883;
+  background-color: #fff;
   border-radius: 5px;
   cursor: pointer;
   width: 60%;
   margin: 5px 30px;
+  color: #000;
+}
+.green {
+  color: #19c883;
+}
+.red {
+  color: #ff4d4d;
+}
+
+/*
+button hover animations
+*/
+
+button:hover {
+  background-color: #19c883;
+  color: #fff;
+  background: linear-gradient(
+    to left,
+    #19c883 0%,
+    #19c883 50%,
+    #ffffff 50%,
+    #ffffff 100%
+  );
+  background-size: 200% 100%;
+  background-position: right;
+  transform: scale(1.02);
+  transition: transform 0.3s, background-position 0.2s;
+}
+
+button:hover .green,
+button:hover .red {
   color: #fff;
 }
 </style>

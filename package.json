@@ -6,15 +6,18 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:e2e": "vue-cli-service test:e2e",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "reset_db": "node ./models/populate_database.js"
   },
   "dependencies": {
     "@sipec/vue3-tags-input": "^3.0.4",
+    "@waylaidwanderer/chatgpt-api": "^1.37.3",
     "axios": "^1.6.8",
     "core-js": "^3.8.3",
     "cors": "^2.8.5",
     "express": "^4.19.1",
     "mongoose": "^8.2.3",
+    "playwright": "^1.42.1",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0"
@@ -22,6 +25,8 @@
   "devDependencies": {
     "@babel/core": "^7.12.16",
     "@babel/eslint-parser": "^7.12.16",
+    "@playwright/test": "^1.42.1",
+    "@types/node": "^20.11.30",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-e2e-cypress": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
