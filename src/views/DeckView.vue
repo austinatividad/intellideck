@@ -5,7 +5,7 @@
       <div class="deck_preview">
         <img src="../assets/deck.png" alt="flashcard" />
         <div class="deck_actions">
-          <h4>Higest Streak: 0</h4>
+          <h4>Highest Streak: {{ deck.practice_highscore }}</h4>
           <button class="Practice">Practice</button>
         </div>
       </div>
@@ -221,6 +221,10 @@ button {
   color: white;
   padding: 0rem 0.3rem;
 }
+.Practice:hover {
+  background-color: #13a068;
+}
+
 .green {
   background-color: #19c883;
 }

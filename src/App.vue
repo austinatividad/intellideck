@@ -28,7 +28,7 @@ body {
       transparent
     );
   margin: 0;
-  animation: parallax 100s infinite linear;
+  animation: parallax 96s infinite linear;
 }
 
 @keyframes parallax {

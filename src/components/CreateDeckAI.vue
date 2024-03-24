@@ -1,4 +1,17 @@
 <template>
+  <div v-if="loading" class="blur_page">
+    <div class="load_contents">
+      <div
+        class="loader_text green"
+        style="z-index: 999; font-size: 1.5rem; margin-bottom: 0.5rem"
+      >
+        Now Cooking...
+      </div>
+      <div class="loader">
+        <div class="loaderBar"></div>
+      </div>
+    </div>
+  </div>
   <div class="ai_form">
     <div class="ai_form_header">
       <h1>
@@ -45,9 +58,13 @@
       ></textarea
       ><br />
       <p>
-        <span class="green" style="margin-bottom: 1rem">*note: </span>
-        IntelliDeck may generate inaccurate results. Please verify the generated
-        flashcards before using them.
+        <span class="green" style="margin-bottom: 1rem; font-weight: bold"
+          >Important Notice: </span
+        ><br />
+        IntelliDeck may generate
+        <span class="red">inaccurate / nonfactual information</span>.<br />
+        Please verify the legitimacy of the generated flashcards before using
+        them.
       </p>
 
       <div class="button_holder">
@@ -55,6 +72,7 @@
         <button
           class="ai_button"
           @click="
+            loadingSpinner();
             constructDeck();
             generateCards();
           "
@@ -67,6 +85,88 @@
 </template>
 
 <style scoped>
+.load_contents {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.loader {
+  width: 500px;
+  margin: 0 auto;
+  border-radius: 10px;
+  border: 4px solid transparent;
+  position: relative;
+  padding: 1px;
+}
+.loader:before {
+  content: "";
+  border: 1px solid #19c883;
+  border-radius: 10px;
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  bottom: -4px;
+  left: -4px;
+}
+.loader .loaderBar {
+  position: absolute;
+  border-radius: 10px;
+  top: 0;
+  right: 100%;
+  bottom: 0;
+  left: 0;
+  background: #19c883;
+  width: 0;
+  animation: borealisBar 2s linear infinite;
+}
+
+@keyframes borealisBar {
+  0% {
+    left: 0%;
+    right: 100%;
+    width: 0%;
+  }
+  10% {
+    left: 0%;
+    right: 75%;
+    width: 25%;
+  }
+  90% {
+    right: 0%;
+    left: 75%;
+    width: 25%;
+  }
+  100% {
+    left: 100%;
+    right: 0%;
+    width: 0%;
+  }
+}
+
+.blur_page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 100;
+  display: none;
+
+  /* Center the content */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /*gaussian blur*/
+  backdrop-filter: blur(5px);
+}
 .green {
   color: #19c883;
 }
@@ -76,7 +176,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 80vh;
   margin-top: 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -89,6 +189,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.red {
+  color: #cc564d;
 }
 
 .ai_form_input {
@@ -167,6 +271,7 @@ export default {
   name: "CreateDeckAI",
   data() {
     return {
+      loading: false,
       creationType: "",
       deck_title: "",
       deck_descripion: "",
@@ -179,6 +284,12 @@ export default {
     };
   },
   methods: {
+    loadingSpinner() {
+      // Add loading spinner
+      console.log("Loading spinner...");
+      //set loading = true
+      this.loading = true;
+    },
     constructDeck() {
       this.deck = {
         title: this.deck_title,
@@ -192,6 +303,7 @@ export default {
       //check if title and text is empty
       if (this.deck_title === "" || this.text_input === "") {
         alert("Please fill out the title and text input fields.");
+        this.loading = false;
         return;
       }
       // Call axios to send request to the backend

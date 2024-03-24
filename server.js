@@ -21,9 +21,7 @@ app.listen(PORT, () => {
 // Routes:
 
 app.get("/api/get_decks", async (req, res) => {
-  const decks = await Deck.find({})
-    .sort({ created_at: -1 })
-    .exec();
+  const decks = await Deck.find({}).sort({ created_at: -1 }).exec();
   res.json(decks);
 });
 
@@ -67,7 +65,7 @@ app.get("/api/generate_cards", async (req, res) => {
   console.log(text_input);
 
   const request = {
-    messages: ` You are a flashcard generator. Do not explain. Do not include the term in the definition. Add 5 newlines at the end of your response. Your task is to create a LIST containing 12 JSON objects that follow the following format: { "definition": "insert definition here", "term": "insert term here" } You are tasked to create flashcards based on User: ${text_input} `,
+    messages: ` You are a flashcard generator. Do not explain. Do not include the term in the definition. If provided long text, [definition] can be questions.  Add 5 newlines at the end of your response. Your task is to create a LIST containing 12 JSON objects that follow the following format: { "definition": "insert definition here", "term": "insert term here" } You are tasked to create flashcards based on User: ${text_input} `,
   };
 
   const url = "http://localhost:8766/v1/chat/completions";

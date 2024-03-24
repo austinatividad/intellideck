@@ -30,9 +30,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: top;
   width: 100%;
-  height: 20rem;
+  height: 16rem;
   background-color: #f5f5f5;
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4);
 }
@@ -40,6 +40,7 @@ h1 {
   font-size: 10vh;
   color: #2c3e50;
   margin-bottom: 0vh;
+  margin-top: 1vh;
 }
 .main-page_description {
   font-size: 1.5rem;
