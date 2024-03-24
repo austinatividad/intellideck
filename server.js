@@ -23,7 +23,6 @@ app.listen(PORT, () => {
 app.get("/api/get_decks", async (req, res) => {
   const decks = await Deck.find({})
     .sort({ created_at: -1 })
-    .populate("cards")
     .exec();
   res.json(decks);
 });
