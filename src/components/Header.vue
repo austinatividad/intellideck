@@ -1,6 +1,6 @@
 <template>
   <div class="main-page">
-    <div class="main-page_header">
+    <div class="main-page_header" @click="home">
       <h1>
         Intelli<span
           style="color: #19c883; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3)"
@@ -41,6 +41,7 @@ h1 {
   color: #2c3e50;
   margin-bottom: 0vh;
   margin-top: 1vh;
+  cursor: pointer;
 }
 .main-page_description {
   font-size: 1.5rem;
@@ -58,5 +59,12 @@ h1 {
 <script>
 export default {
   name: "HeaderPage",
+  methods: {
+    home() {
+      this.$router.push({
+        name: "home",
+      });
+    },
+  },
 };
 </script>
