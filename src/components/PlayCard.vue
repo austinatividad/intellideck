@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: "Card_view",
+  name: "PlayCard_view",
   props: {
     card: Object,
   },

@@ -6,7 +6,7 @@
         <img src="../assets/deck.png" alt="flashcard" />
         <div class="deck_actions">
           <h4>Highest Streak: {{ deck.practice_highscore }}</h4>
-          <button class="Practice">Practice</button>
+          <button class="Practice" @click="start_practice">Practice</button>
         </div>
       </div>
       <div class="deck_content">
@@ -251,6 +251,16 @@ export default {
   components: {
     Header,
     Card,
+  },
+  methods: {
+    start_practice() {
+      this.$router.push({
+        name: "practice",
+        params: {
+          _id: this.deck._id,
+        },
+      });
+    },
   },
   mounted() {
     console.log("DeckView mounted");

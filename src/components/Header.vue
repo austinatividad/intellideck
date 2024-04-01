@@ -40,7 +40,7 @@ h1 {
   font-size: 10vh;
   color: #2c3e50;
   margin-bottom: 0vh;
-  margin-top: 1vh;
+  margin-top: 6vh;
   cursor: pointer;
 }
 .main-page_description {
