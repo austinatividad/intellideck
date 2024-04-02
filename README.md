@@ -11,26 +11,31 @@ Note: The model I am currently using is NOT fine-tuned yet. (No money 😭)
    - The main feature of IntelliDeck! It uses a large language model to generate a deck of flashcards based on the user's input.
 2. **Viewing Created Decks**
    - Currently, the web application only lets users view the decks of flashcards they generated. Future plans include the modification of these decks!
+3. **Practice Tool**
+    - The user gets to use their flashcards in a game where they could practice on a deck they created.
+    - The game goes indefinitely, and the basis of scoring is their streak of getting the cards correct.
+    - Currently, 1 practice mode is implemented where the user is shown 3 cards, with two incorrect ones, and they have to figure out which one is the correct card.
+    - More game modes will be implemented soon!
 
 ## Short Demo
 To gain an idea of what IntelliDeck is, please watch the short demo below:
 
+**v0.2 Demo**\
 [![IntelliDeck v0.2 Demo](https://img.youtube.com/vi/dugGYZptags/0.jpg)](https://www.youtube.com/watch?v=dugGYZptags)
 
+**v0.3 Demo**\
+[![IntelliDeck v0.3 Demo](https://img.youtube.com/vi/0sAC5Qh9Jpc/0.jpg)](https://youtu.be/0sAC5Qh9Jpc)
+
 ## Planned Features 📌
-1. **Practice Tool**
-    - The user gets to use their flashcards in a game where they could practice on a deck they created.
-    - The game goes indefinitely, and the basis of scoring is their streak of getting the cards correct.
-    - Different practice modes may also be implemented!
-2. **Editing and Deleting Cards**
+1. **Editing and Deleting Cards**
     - IntelliDeck does not guarantee perfect results (yet?) therefore, users can modify the definition and term of the generated flashcards.
-3. **Manual Creation of Decks and Cards**
+2.  **Manual Creation of Decks and Cards**
     - While IntelliDeck is a web application focusing on AI-generated flashcards, it is still essentially designed to be a learning tool for anyone. My goal is still to create a
-4. **Images!**
+3. **Images!**
     - Some learners may be able to memorize concepts more with visualizations. If flashcards could include images, the learning and familiarization rates may even be better!
     - The default option is to let users drag and drop their images into the flashcards
     - If possible (albeit expensive), image-generation AI can also be integrated in the future
-5. **User System**
+4. **User System**
     - Currently, IntelliDeck is on a single centralized database. If everything goes well, I could implement a user system where each user would have their decks and cards, but this is currently impossible due to my current implementation of the ChatGPT API wrapper I use.
 ## Setup
 1. Clone the repository
