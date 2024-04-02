@@ -26,6 +26,11 @@ To gain an idea of what IntelliDeck is, please watch the short demo below:
 **v0.3 Demo**\
 [![IntelliDeck v0.3 Demo](https://img.youtube.com/vi/0sAC5Qh9Jpc/0.jpg)](https://youtu.be/0sAC5Qh9Jpc)
 
+## Currently Working On 👨🏻‍💻
+1. Replacing the current AI API used (it's VERY volatile!)
+2. Refactoring CSS
+3. Manual creation of decks
+
 ## Planned Features 📌
 1. **Editing and Deleting Cards**
     - IntelliDeck does not guarantee perfect results (yet?) therefore, users can modify the definition and term of the generated flashcards.
